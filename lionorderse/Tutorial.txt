@@ -1,0 +1,90 @@
+Important commands:
+      Docker:
+          docker ps
+          docker images
+          docker logs <container_name>
+          docker exec -it <container_name> sh
+          docker -v // docker version
+
+
+      DockerCompose:
+          docker-compose up 
+          docker-compose up --build
+          docker-compose down
+          docker-compose restart
+          docker-compose ps
+          docker-compose logs <service_name>
+          docker-compose exec <service_name> sh
+          docker-compose version // docker compose version
+
+
+
+
+
+Dockerfile:
+    Defines how a container is going to be built by creating a docker IMAGE. Can specify commands to run, server distributions to use, or installation requirements. 
+    Images need to be rebuilt when modifying code. 
+
+docker-compose.yml:
+    Yaml file that defines and manages the container. In the customers example, it creates a container based of the customer image we created, as well as using a public image for the mariadb database. 
+    Also can attach volumes to the containers from the filesystem and exposes ports. (8000 for FastAPI, 3306 for MariaDB). 
+    Enables communication between python and mariadb. 
+
+Main.py:
+    Uses FastAPI to enable JSON communication in and out.
+    Uses pymysql to enable easy sql statements into the mariadb database. 
+    Uses uvicorn server to run FastAPI on. 
+
+requirements.txt:
+    Simply gives the python requirements that the dockerfile uses to install into the container. 
+
+db/init.sql:
+    Initializes database. It's imporant to note that docker-compose.yml copies this file into the mariadb container where it is executed. 
+
+
+Webpage:
+    webpage/login.html:
+        This is used for creating the login page where customer are able to first log into the website. 
+        This was used making HTML and Bootstrap for easier and responsive design.
+        
+    webpage/login.css:
+        This is creating the design and resizing the the differnt strucure of the HTML file.
+    
+
+
+
+
+Commands to fill database: 
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100001", "qty": 200, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100002", "qty": 150, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100003", "qty": 180, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100004", "qty": 220, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100005", "qty": 170, "availability": true}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Carrots", "UPC": "100001", "quantity": 50, "price": 2.99}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Lettuce", "UPC": "100002", "quantity": 40, "price": 1.99}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Tomatoes", "UPC": "100003", "quantity": 60, "price": 3.49}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Potatoes", "UPC": "100004", "quantity": 55, "price": 1.79}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Onions", "UPC": "100005", "quantity": 45, "price": 1.49}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100006", "qty": 300, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100007", "qty": 250, "availability": true}'
+curl -X POST "http://localhost:8008/warehouse/insert" -H "Content-Type: application/json" -d '{"upc": "100008", "qty": 180, "availability": true}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Apples", "UPC": "100006", "quantity": 30, "price": 3.99}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Bananas", "UPC": "100007", "quantity": 25, "price": 1.29}'
+curl -X POST "http://localhost:8006/inventory/insert" -H "Content-Type: application/json" -d '{"itemName": "Strawberries", "UPC": "100008", "quantity": 20, "price": 4.99}'
+
+
+
+Command to get rid of all containers (in case system get's bogged down, happens often)
+docker system prune -a --volumes
+
+
+ports each container are on. 
+webserver: 8080:80
+customers-db: 3306:3306
+customers-api: 8005:8000
+inventory-db: 3307:3306
+inventory-api: 8006:8000
+orders-db: 3308:3306
+orders-api: 8007:8000
+warehouse-db: 3309:3306
+warehouse-api: 8008:8000

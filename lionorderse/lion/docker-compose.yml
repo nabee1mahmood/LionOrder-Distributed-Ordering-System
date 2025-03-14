@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # Customers Database
+  customers-db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: customersDB
+    volumes:
+      - ./customers/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+
+  # Customers API 
+  customers-api:
+    build: ./api/customers
+    depends_on:
+      - customers-db
+    restart: always
+    ports:
+      - "8005:8000"
+
+  # Inventory Database
+  inventory-db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: inventoryDB
+    volumes:
+      - ./inventory/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+
+  # Inventory API
+  inventory-api:
+    build: ./api/inventory
+    depends_on:
+      - inventory-db
+    restart: always
+    ports:
+      - "8006:8000"
+
+  # Orders Database
+  orders-db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ordersDB
+    volumes:
+      - ./orders/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3308:3306"
+
+  # Orders API
+  orders-api:
+    build: ./api/orders
+    depends_on:
+      - orders-db
+    restart: always
+    ports:
+      - "8007:8000"
+
+  # Warehouse Database
+  warehouse-db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: warehouseDB
+    volumes:
+      - ./warehouse/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3309:3306"
+
+  # Warehouse API
+  warehouse-api:
+    build: ./api/warehouse
+    depends_on:
+      - warehouse-db
+    restart: always
+    ports:
+      - "8008:8000"
+
+  # Web Server (Apache + PHP)
+  webserver:
+    image: php:apache
+    volumes:
+      - ./webpage/pages:/var/www/html
+    ports:
+      - "8080:80"
+

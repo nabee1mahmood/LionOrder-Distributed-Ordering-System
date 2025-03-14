@@ -1,0 +1,185 @@
+/* CSS comment */
+/* NO content is displayed in the main file -
+   only for formatting */
+
+/* view account page */
+
+
+.stack{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* body background color */
+body {
+  background: #e6eeff;
+}
+
+body.manageAccount {
+  background: #ffe6cc;
+}
+
+body.pastorders {
+  background: #e6ffe6;
+}
+
+.button1 {
+  width: 150;
+  text-align: left;
+}
+
+/* customer name */
+
+.customerName {
+  color: blue;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 20px;
+  font-style: bold;
+  width: 500px;
+}
+
+/* drop down menu */
+
+.dropbtn {
+  background-color: green;
+  color: white;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+/* position: absolute */
+/*  position: fixed; */
+/*  position: relative; */
+  position: sticky;
+
+  top: 10;
+  left: 750;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;  /* overwrites items under - watch for accidental clicks on items under */
+/*  position: fixed; // affixes to position  */
+/*  position: relative; // shoves any other item out of the way */
+  background-color: rgb(150,140,150,255); /* #f1f1f1;  */
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  opacity: 1;
+}
+.dropdown {
+  opacity: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 12px;
+  text-decoration: none;
+  display: block;
+  opacity: 1;
+}
+
+.dropdown-content:hover {background-color: #ffffcc}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+.frequency-label{
+  width: 250px;
+  text-align: left;
+}
+
+label{
+  display: inline-block;
+  font-weight: bold;
+/*  padding: 5px; */
+  width: 150px; 
+  text-align: right;
+
+}
+
+.labelleft{
+  width: 150px;
+  text-align: left;
+  /* color: blue; */
+}
+
+/* logo */
+
+.logo {
+/*  position: sticky;  */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left:    0;
+  right: 0;
+  width: 40px;
+  border: 3px solid #73AD21;
+}
+
+.returnButton {
+  
+  width: 200%;
+  height: 150%;
+}
+
+
+/* table */
+
+.tablecaption{
+  text-align: center;
+  color: blue;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 24px;
+  font-style: bold;
+}
+
+.tabdetail{
+  border: blue;
+}
+
+td.tabdetailText, th.tabdetail{
+  border: 5px solid lightblue;
+	padding: 3px;
+	text-align: left;
+	vertical-align: center;
+	/* border-right: 10px double green; */
+}
+
+td.tabdetailNumeric{
+  border: 5px solid lightblue;
+	padding: 3px;
+	text-align: center;
+	vertical-align: center;
+	/* border-right: 10px double green;  */
+}
+
+table { 
+	font-family: Arial, Helvetica, sans-serif;
+	width: 80%;
+        border-collapse: collapse;	
+	}
+
+th{
+    background-color: blue;
+    color: white;
+}
+
+
+
+/*
+tr:hover{
+  background-color: grey;
+  color: blue;
+}
+*/
