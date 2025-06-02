@@ -39,15 +39,8 @@ This is the first stage of development, focusing on system design, API structure
 
 ---
 
-## Architecture
-
-- Each major part of the system (customers, orders, inventory, warehouse) will run in its own Docker container.
-- Communication between components happens via REST APIs built with FastAPI.
-- All data (customer info, inventory levels, orders) is accessed through these services—nothing is hardcoded into the web app.
-
----
-
-
-
 ## Report 
+
+
+
 
