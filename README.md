@@ -41,6 +41,7 @@ This is the first stage of development, focusing on system design, API structure
 
 ## Report 
 
+[Click this to view the report](PS1LionOrderReport.pdf)
 
 
 
